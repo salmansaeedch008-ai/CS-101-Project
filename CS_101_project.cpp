@@ -81,6 +81,9 @@ int main(){
     } while (total_number_of_products < 0);
     cout << endl;
 
+    string products[total_number_of_products];
+    float price[total_number_of_products];
+    int quantity[total_number_of_products];
 
 
 
