@@ -65,7 +65,21 @@ int main(){
 
     cout << GREEN << "\n======= LOGIN SUCCESSFUL =======" << RESET << endl << endl;   //if both username and password will be correct it will pring login successful on the screen
 
+    cin.ignore();
+    string customer_name;
+    cout << CYAN << "Enter Customer Name : " << RESET;
+    getline(cin, customer_name);
+    cout << endl;
 
+    int total_number_of_products;
+    do {
+        cout << CYAN << "Enter total number of products : " << RESET;
+        cin >> total_number_of_products;
+        if (total_number_of_products < 0) {
+            cout << RED << "Invalid input! please again " << RESET;
+        }
+    } while (total_number_of_products < 0);
+    cout << endl;
 
 
 
