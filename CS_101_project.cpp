@@ -1,4 +1,10 @@
 #include<iostream>    //header files
+#include <string>
+#include <ctime>
+#include <cstdlib>
+#include <iomanip>
+#include<chrono>
+#include<thread>
 using namespace std;
 
 #define RESET   "\033[0m"
