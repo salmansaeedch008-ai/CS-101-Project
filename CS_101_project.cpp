@@ -109,6 +109,12 @@ int main(){
         cout << endl;
     }
 
+    srand(time(0));
+    int bill_number = rand() % 10000;
+
+    time_t now = time(0);
+    char *dt = ctime(&now);
+
 
     return 0;
 }
