@@ -85,6 +85,29 @@ int main(){
     float price[total_number_of_products];
     int quantity[total_number_of_products];
 
+    for (int i = 0; i < total_number_of_products; i++) {
+        cout << MAGENTA << "Enter name of product " << i + 1 << " : " << RESET;
+        cin.ignore();
+        getline(cin, products[i]);
+
+        do {
+            cout << YELLOW << "Enter price of product " << i + 1 << " : " << RESET;
+            cin >> price[i];
+            if (price[i] < 0) {
+                cout << RED << "Invalid input! please again " << RESET;
+            }
+        } while (price[i] < 0);
+
+        do {
+            cout << YELLOW << "Enter quantity of product " << i + 1 << " : " << RESET;
+            cin >> quantity[i];
+            if (quantity[i] < 0) {
+                cout << RED << "Invalid input! please again " << RESET;
+            }
+        } while (quantity[i] < 0);
+
+        cout << endl;
+    }
 
 
     return 0;
