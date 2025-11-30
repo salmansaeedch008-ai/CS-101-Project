@@ -1,7 +1,7 @@
-#include<iostream>    //header files
+#include<iostream>    
 #include <string>
 #include <ctime>
-#include <cstdlib>
+#include <cstdlib>                        //Header Files
 #include <iomanip>
 #include<chrono>
 #include<thread>
@@ -71,55 +71,55 @@ int main(){
 
     cout << GREEN << "\n======= LOGIN SUCCESSFUL =======" << RESET << endl << endl;   //if both username and password will be correct it will pring login successful on the screen
 
-    cin.ignore();
+    cin.ignore();              //ignoring previous input so there is no mixing with coming input
     string customer_name;
-    cout << CYAN << "Enter Customer Name : " << RESET;
-    getline(cin, customer_name);
+    cout << CYAN << "Enter Customer Name : " << RESET;   //input customer name
+    getline(cin, customer_name);           //using getline to also read name if there are two words in a name
     cout << endl;
 
     int total_number_of_products;
+    cout << CYAN << "Enter total number of products : " << RESET;
     do {
-        cout << CYAN << "Enter total number of products : " << RESET;
-        cin >> total_number_of_products;
+        cin >> total_number_of_products;  //input total number of products
         if (total_number_of_products < 0) {
-            cout << RED << "Invalid input! please again " << RESET;
+            cout << RED << "Invalid input! please again enter total number of products : " << RESET;
         }
-    } while (total_number_of_products < 0);
+    } while (total_number_of_products < 0);   //asking user again to enter total products if entered less than 1 products previously
     cout << endl;
 
-    string products[total_number_of_products];
-    float price[total_number_of_products];
-    int quantity[total_number_of_products];
+    string products[total_number_of_products];    //storing products name in array as entered by cashier
+    float price[total_number_of_products];        //storing price of each product in an array entered by cashier
+    int quantity[total_number_of_products];       //storing quantity of each product in an array entered by cashier
 
     for (int i = 0; i < total_number_of_products; i++) {
         cout << MAGENTA << "Enter name of product " << i + 1 << " : " << RESET;
-        cin.ignore();
-        getline(cin, products[i]);
+        cin.ignore();                      //ignoring previous input so there is no mixing with coming input
+        getline(cin, products[i]);         //input names of product
 
+        cout << YELLOW << "Enter price of product " << i + 1 << " : " << RESET;
         do {
-            cout << YELLOW << "Enter price of product " << i + 1 << " : " << RESET;
-            cin >> price[i];
+            cin >> price[i];             //input price of product
             if (price[i] < 0) {
-                cout << RED << "Invalid input! please again " << RESET;
+                cout << RED << "Invalid input! please again enter price of product : " << RESET;
             }
-        } while (price[i] < 0);
+        } while (price[i] < 0);     //asking again for price if user enters less than 0 price
 
+        cout << YELLOW << "Enter quantity of product " << i + 1 << " : " << RESET;
         do {
-            cout << YELLOW << "Enter quantity of product " << i + 1 << " : " << RESET;
-            cin >> quantity[i];
+            cin >> quantity[i];    //input quantity of each product
             if (quantity[i] < 0) {
-                cout << RED << "Invalid input! please again " << RESET;
+                cout << RED << "Invalid input! please again enter quantity of product :  " << RESET;
             }
-        } while (quantity[i] < 0);
+        } while (quantity[i] < 0);        //asking again for quantity if user enters less than 0 quantity
 
         cout << endl;
     }
 
     srand(time(0));
-    int bill_number = rand() % 10000;
+    int bill_number = rand() % 10000;         //random bill generator in the range of 10000
 
-    time_t now = time(0);
-    char *dt = ctime(&now);
+    time_t now = time(0); 
+    char *dt = ctime(&now);                  //printing current date and time
 
 
     return 0;
