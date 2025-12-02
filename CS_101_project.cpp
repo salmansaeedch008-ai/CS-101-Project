@@ -121,6 +121,53 @@ int main(){
     time_t now = time(0); 
     char *dt = ctime(&now);                  //printing current date and time
 
+    this_thread::sleep_for(chrono::seconds(2));
+
+    cout << BLUE << "==================================================" << RESET << endl;
+    cout << GREEN << "                   BILL RECEIPT                 " << RESET << endl;
+    cout << BLUE << "==================================================" << RESET << endl;
+
+    cout << CYAN << "\nCustomer name : " << RESET << customer_name << endl;
+    cout << CYAN << "Bill number   : " << RESET << bill_number << endl;
+    cout << CYAN << "Date and Time : " << RESET << dt;
+    cout << BLUE << "--------------------------------------------------" << RESET << endl;
+
+    cout << left
+         << YELLOW << setw(15) << "Products"
+         << setw(10) << "Price"
+         << setw(12) << "Quantity"
+         << setw(10) << "Total(Rs.)" << RESET << endl;
+
+    cout << BLUE << "--------------------------------------------------" << RESET << endl;
+
+    for (int i = 0; i < total_number_of_products; i++) {
+        cout << left
+             << WHITE << setw(16) << products[i]
+             << setw(12) << price[i]
+             << setw(10) << quantity[i]
+             << GREEN << price[i] * quantity[i] << " Rs." << RESET << endl;
+
+        cout << BLUE << "--------------------------------------------------" << RESET << endl;
+    }
+
+    float total_bill = calculate_total(price, quantity, total_number_of_products);
+    cout << CYAN << "\n              Total Bill : " << GREEN << total_bill << " Rs." << RESET << endl;
+
+    float discount = 0;
+    if (total_bill > 1000) {
+        discount = 0.10 * total_bill;
+        cout << CYAN << "                 Discount : " << GREEN << discount << " Rs." << RESET << endl;
+    }
+
+    float tax = (0.05 * total_bill);
+    cout << CYAN << "                     Tax : " << GREEN << tax << " Rs." << RESET << endl << endl;
+
+    cout << BLUE << "--------------------------------------------------" << RESET << endl << endl;
+
+    float sub_total = ((total_bill - discount) + tax);
+    cout << CYAN << "               Sub Total : " << GREEN << sub_total << " Rs." << RESET << endl << endl;
+
+    cout << BLUE << "--------------------------------------------------" << RESET << endl << endl;
 
     return 0;
 }
