@@ -169,5 +169,71 @@ int main(){
 
     cout << BLUE << "--------------------------------------------------" << RESET << endl << endl;
 
+    int choice;
+    float recieved_cash, remaining_amount;
+
+    cout << MAGENTA << "Payment Methods : " << RESET << endl << endl;
+    cout << "     " << CYAN << "1-Jazzcash" << RESET << endl;
+    cout << "     " << CYAN << "2-Bank Credit Card" << RESET << endl;
+    cout << "     " << CYAN << "3-Easypaisa" << RESET << endl;
+    cout << "     " << CYAN << "4-Cash" << RESET << endl << endl;
+
+    cout << YELLOW << "Select Payment Method : " << RESET;
+
+    do {
+        cin >> choice;
+        switch (choice) {
+        case 1:
+            cout << GREEN << "Selected Method : JazzCash. Processing payment..." << endl;
+            cout << "Payment Successful" << RESET << endl;
+            break;
+
+        case 2:
+            cout << GREEN << "Selected Method : Credit Card. Redirecting..." << endl;
+            cout << "Payment Successful" << RESET << endl;
+            break;
+
+        case 3:
+            cout << GREEN << "Selected Method : EasyPaisa. Processing..." << endl;
+            cout << "Payment Successful" << RESET << endl;
+            break;
+
+        case 4:
+            cout << YELLOW << "Selected Method : Cash. Please pay at counter.\n" << RESET << endl;
+            cout << CYAN << "Total Cash To Pay : " << GREEN << sub_total << " Rs." << RESET << endl;
+
+            remaining_amount = sub_total;
+
+            while (remaining_amount > 0) {
+                cout << CYAN << "Enter Cash Received : " << RESET;
+                cin >> recieved_cash;
+
+                if (recieved_cash <= 0) {
+                    cout << RED << "Invalid amount! Enter again." << RESET << endl;
+                    continue;
+                }
+
+                remaining_amount -= recieved_cash;
+
+                if (remaining_amount > 0) {
+                    cout << YELLOW << "You still need to pay: " << remaining_amount << " Rs.\n" << RESET;
+                }
+            }
+
+            if (remaining_amount < 0) {
+                cout << GREEN << "Change : " << -remaining_amount << " Rs." << RESET << endl;
+            }
+
+            cout << GREEN << "Payment Successful!" << RESET << endl;
+            break;
+
+        default:
+            cout << RED << "Invalid Choice! Please select a valid option (1 to 4): " << RESET;
+        }
+    } while (choice > 4 || choice < 1);
+
+    cout << GREEN << "\n\nThank you for shopping " << customer_name << " !" << RESET << endl;
+
+
     return 0;
 }
