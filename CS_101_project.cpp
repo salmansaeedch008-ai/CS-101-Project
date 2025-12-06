@@ -3,8 +3,8 @@
 #include <ctime>
 #include <cstdlib>                        //Header Files
 #include <iomanip>
-#include<chrono>
-#include<thread>
+#include<fstream>
+
 using namespace std;
 
 #define RESET   "\033[0m"
@@ -16,15 +16,16 @@ using namespace std;
 #define CYAN    "\033[36m"
 #define WHITE   "\033[37m"
 
-float calculate_total(float price[], int quantity[], int n) {
-    float total = 0;
+double calculate_total(double price[], int quantity[], int n) {
+    double total = 0;
     for (int i = 0; i < n; i++) {
         total += price[i] * quantity[i];
     }
     return total;
 }
 
-int main(){
+
+bool login() {
 
     cout << BLUE << "================================" << RESET << endl;    //also giving colouring to each line
     cout << GREEN << "           LOGIN SYSTEM         " << RESET << endl;   //prints login system on screen
@@ -48,7 +49,7 @@ int main(){
 
     if (attempts == 0) {        //if there are 0 attempts remaining the program will end automatically
         cout << RED << "Too many wrong attempts. Program closed." << RESET << endl;
-        return 0;
+        return false;
     }
 
     attempts = 3;              //giving three attempts for password
@@ -66,10 +67,91 @@ int main(){
 
     if (attempts == 0) {        //if there are 0 attempts remaining the program will end automatically
         cout << RED << "Too many wrong attempts. Program closed." << RESET << endl;
-        return 0;
+        return false;
     }
 
     cout << GREEN << "\n======= LOGIN SUCCESSFUL =======" << RESET << endl << endl;   //if both username and password will be correct it will pring login successful on the screen
+
+    return true;
+}
+
+    void save_and_print_summary(string customer_name, int bill_number, char *dt, string products[], double price[], int quantity[],  int total_items, double total_bill, double discount, double tax, double sub_total) 
+{
+    // Opening file to save bill
+    ofstream file("bill_summary.txt" , ios::app);
+
+    // Print & Save Header
+    cout<<"\n\n======= BILL SUMMARY =======\n";
+    file<<"======= BILL SUMMARY =======\n";
+
+    cout<<"Customer Name : " << customer_name << endl;
+    file<<"Customer Name : " << customer_name << endl;
+
+    cout<<"Bill Number   : " << bill_number << endl;
+    file<<"Bill Number   : " << bill_number << endl;
+
+    cout<<"Date & Time   : " << dt;
+    file<<"Date & Time   : " << dt;
+
+    cout<<"---------------------------------------\n";
+    file<<"---------------------------------------\n";
+
+    cout<<left << setw(15) << "Product" 
+         << setw(10) << "Price" 
+         << setw(10) << "Qty" 
+         << "Total\n";
+
+    file << left << setw(15) << "Product" 
+         << setw(10) << "Price" 
+         << setw(10) << "Qty" 
+         << "Total\n";
+
+    cout<<"---------------------------------------\n";
+    file<<"---------------------------------------\n";
+
+    // Loop to print items
+    for (int i = 0; i < total_items; i++) {
+        double product_total = price[i] * quantity[i];
+
+        cout<< left << setw(15) << products[i]
+             << setw(10) << price[i]
+             << setw(10) << quantity[i]
+             << product_total << endl;
+
+        file<< left << setw(15) << products[i]
+             << setw(10) << price[i]
+             << setw(10) << quantity[i]
+             << product_total << endl;
+    }
+
+    cout<<"\nTotal Bill : " << total_bill << endl;
+    file<<"\nTotal Bill : " << total_bill << endl;
+
+    cout<<"Discount   : " << discount << endl;
+    file<<"Discount   : " << discount << endl;
+
+    cout<<"Tax        : " << tax << endl;
+    file<<"Tax        : " << tax << endl;
+
+    cout<<"Sub Total  : " << sub_total << endl;
+    file<<"Sub Total  : " << sub_total << endl;
+
+    cout<<"\nBill saved to 'bill_summary.txt'\n";
+    file<<"\n======= END OF BILL =======\n";
+    file<<endl;
+    file<<"--------------------------------------" << endl;
+    file<<endl;
+
+    file.close();
+}
+
+
+int main(){
+
+
+    if (!login()) {   // call the function
+        return 0;     // stop program if login failed
+    }
 
     cin.ignore();              //ignoring previous input so there is no mixing with coming input
     string customer_name;
@@ -88,7 +170,7 @@ int main(){
     cout << endl;
 
     string products[total_number_of_products];    //storing products name in array as entered by cashier
-    float price[total_number_of_products];        //storing price of each product in an array entered by cashier
+    double price[total_number_of_products];        //storing price of each product in an array entered by cashier
     int quantity[total_number_of_products];       //storing quantity of each product in an array entered by cashier
 
     for (int i = 0; i < total_number_of_products; i++) {
@@ -121,7 +203,6 @@ int main(){
     time_t now = time(0); 
     char *dt = ctime(&now);                  //printing current date and time
 
-    this_thread::sleep_for(chrono::seconds(2));
 
     cout << BLUE << "==================================================" << RESET << endl;
     cout << GREEN << "                   BILL RECEIPT                 " << RESET << endl;
@@ -150,16 +231,16 @@ int main(){
         cout << BLUE << "--------------------------------------------------" << RESET << endl;
     }
 
-    float total_bill = calculate_total(price, quantity, total_number_of_products);
+    double total_bill = calculate_total(price, quantity, total_number_of_products);
     cout << CYAN << "\n              Total Bill : " << GREEN << total_bill << " Rs." << RESET << endl;
 
-    float discount = 0;
+    double discount = 0;
     if (total_bill > 1000) {
         discount = 0.10 * total_bill;
-        cout << CYAN << "                 Discount : " << GREEN << discount << " Rs." << RESET << endl;
+        cout << CYAN << "                Discount : " << GREEN << discount << " Rs." << RESET << endl;
     }
 
-    float tax = (0.05 * total_bill);
+    double tax = (0.05 * total_bill);
     cout << CYAN << "                     Tax : " << GREEN << tax << " Rs." << RESET << endl << endl;
 
     cout << BLUE << "--------------------------------------------------" << RESET << endl << endl;
@@ -170,7 +251,7 @@ int main(){
     cout << BLUE << "--------------------------------------------------" << RESET << endl << endl;
 
     int choice;
-    float recieved_cash, remaining_amount;
+    double recieved_cash, remaining_amount;
 
     cout << MAGENTA << "Payment Methods : " << RESET << endl << endl;
     cout << "     " << CYAN << "1-Jazzcash" << RESET << endl;
@@ -231,6 +312,9 @@ int main(){
             cout << RED << "Invalid Choice! Please select a valid option (1 to 4): " << RESET;
         }
     } while (choice > 4 || choice < 1);
+
+    save_and_print_summary(customer_name, bill_number, dt, products, price, quantity,  total_number_of_products,  total_bill, discount, tax, sub_total);
+    
 
     cout << GREEN << "\n\nThank you for shopping " << customer_name << " !" << RESET << endl;
 
