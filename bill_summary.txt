@@ -89,3 +89,21 @@ Sub Total  : 1.05
 
 --------------------------------------
 
+======= BILL SUMMARY =======
+Customer Name : salman saeed
+Bill Number   : 1894
+Date & Time   : Sat Dec 20 17:46:44 2025
+---------------------------------------
+Product        Price     Qty       Total
+---------------------------------------
+1              1         1         1
+
+Total Bill : 1
+Discount   : 0
+Tax        : 0.05
+Sub Total  : 1.05
+
+======= END OF BILL =======
+
+--------------------------------------
+
