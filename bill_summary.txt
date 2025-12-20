@@ -1,0 +1,91 @@
+======= BILL SUMMARY =======
+Customer Name : 
+Bill Number   : 2395
+Date & Time   : Sat Dec 20 16:58:15 2025
+---------------------------------------
+Product        Price     Qty       Total
+---------------------------------------
+kela           10        3         30
+condom         50        200       10000
+
+Total Bill : 10030
+Discount   : 1003
+Tax        : 501.5
+Sub Total  : 9528.5
+
+======= END OF BILL =======
+
+--------------------------------------
+
+======= BILL SUMMARY =======
+Customer Name : 
+Bill Number   : 2848
+Date & Time   : Sat Dec 20 17:00:34 2025
+---------------------------------------
+Product        Price     Qty       Total
+---------------------------------------
+1              1         1         1
+
+Total Bill : 1
+Discount   : 0
+Tax        : 0.05
+Sub Total  : 1.05
+
+======= END OF BILL =======
+
+--------------------------------------
+
+======= BILL SUMMARY =======
+Customer Name : 
+Bill Number   : 3851
+Date & Time   : Sat Dec 20 17:05:41 2025
+---------------------------------------
+Product        Price     Qty       Total
+---------------------------------------
+1              1         1         1
+
+Total Bill : 1
+Discount   : 0
+Tax        : 0.05
+Sub Total  : 1.05
+
+======= END OF BILL =======
+
+--------------------------------------
+
+======= BILL SUMMARY =======
+Customer Name : 
+Bill Number   : 4321
+Date & Time   : Sat Dec 20 17:08:05 2025
+---------------------------------------
+Product        Price     Qty       Total
+---------------------------------------
+1              1         1         1
+
+Total Bill : 1
+Discount   : 0
+Tax        : 0.05
+Sub Total  : 1.05
+
+======= END OF BILL =======
+
+--------------------------------------
+
+======= BILL SUMMARY =======
+Customer Name : 
+Bill Number   : 4530
+Date & Time   : Sat Dec 20 17:09:09 2025
+---------------------------------------
+Product        Price     Qty       Total
+---------------------------------------
+1              1         1         1
+
+Total Bill : 1
+Discount   : 0
+Tax        : 0.05
+Sub Total  : 1.05
+
+======= END OF BILL =======
+
+--------------------------------------
+
