@@ -107,3 +107,24 @@ Sub Total  : 1.05
 
 --------------------------------------
 
+======= BILL SUMMARY =======
+Customer Name : salman saeedf
+Bill Number   : 1957
+Date & Time   : Tue Jan  6 16:44:00 2026
+---------------------------------------
+Product        Price     Qty       Total
+---------------------------------------
+aloo           23        33        759
+kadoo          34        34        1156
+yelkloe        23        23        529
+khbsdfv        32        23        736
+
+Total Bill : 3180
+Discount   : 318
+Tax        : 159
+Sub Total  : 3021
+
+======= END OF BILL =======
+
+--------------------------------------
+
